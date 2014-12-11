@@ -6,11 +6,11 @@ function get_galleries(){
 
   foreach($galleries['galleries'] as $gallery){
 
-    echo "<a href=\"../php/question.php?=";
+    echo "<a href=\"../php/question.php?gallery=";
     echo $gallery['name'];
     echo "\" class=\"list-group-item\">";
     echo "<span class=\"badge\">";
-    echo $gallery['count'];
+    echo "10"; //$gallery['count'];
     echo "</span>";
     echo $gallery['description'];
     echo "</a>";
