@@ -45,6 +45,26 @@ class Database {
     return $rows;
   }
 
+  public function getAnswer($aid) {
+    $stmt = $this->conn()->prepare("SELECT * from answers WHERE id=:id LIMIT 1");
+    $stmt->execute([
+      'id' => $aid
+      ]);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) return false;
+    return $rows[0];
+  }
+
+  public function getRandomAnswers($gallery_id) {
+    $stmt = $this->conn()->prepare("SELECT * from answers WHERE gallery_id=:gallery_id ORDER BY RAND() LIMIT 2");
+    $stmt->execute([
+      'gallery_id' => $gallery_id
+      ]);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (count($rows) == 0) return false;
+    return $rows;
+  }
+
   public function viewQuestionsInGallery($gallery_id) {
     $stmt = $this->conn()->prepare("SELECT * from questions WHERE gallery_id = :gallery_id");
     $stmt->execute([

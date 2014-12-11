@@ -24,18 +24,24 @@ $app->get('/galleries', function() use ($app, $db) {
 });
 
 //Pulls all questions from a particular gallery
-$app->get('/questions/:gallery', function($gallery) use ($app, $db) {
+$app->get('/questions/gallery/:gallery', function($gallery) use ($app, $db) {
  $questions = $db->viewQuestionsInGallery($gallery);
- $g = [];
-  foreach ($questions as $gy) {
-    $g[] = $gy['img_src'];
+ $ret = [];
+  foreach ($questions as $q) {
+    $tmpq = [];
+    $tmpq['id'] = $q['id'];
+    $tmpq['img_src'] = $q['img_src'];
+    $tmpq['right_answer'] = $db->getAnswer($q['answer_id']);
+    $tmpq['other_answers'] = $db->getRandomAnswers($q['gallery_id']);
+
+    $ret[] = $tmpq;
   }
   $app->render(200, [
-    'questions' => $g
+    'questions' => $ret
   ]);
 });
 
-//Pulls information for particular question 
+//Pulls information for particular question
 $app->get('/question/:id', function($id) use ($app, $db) {
  $gallery = $db->viewQuestion($id);
   $g = [];
