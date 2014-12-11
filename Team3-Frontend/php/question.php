@@ -34,7 +34,7 @@ function build_question(){
   $_SESSION['current_q'] = $_SESSION['current_q'] + 1;
   $cq = $_SESSION['current_q'];
 
-  echo "<code>$cq</code>";
+  //echo "<code>$cq</code>";
 
   if (!isset($_SESSION['cache'])) {
     $gallery = json_decode(file_get_contents('http://localhost/Team3-Recognize/questions/gallery/'.$id), true);
@@ -51,9 +51,9 @@ function build_question(){
   $a[] = $gallery['questions'][$cq]['other_answers'][0];
   $a[] = $gallery['questions'][$cq]['other_answers'][1];
 
-  $first_id = rand(0, 2);
-  $second_id = ($firstId + 1) % 3;
-  $third_id = ($firstId + 2) % 3;
+  $first_id = 0;
+  $second_id = 1;
+  $third_id = 2;
 
   $answer_1 = $a[$first_id]['id'];
   $answer_2 = $a[$second_id]['id'];
