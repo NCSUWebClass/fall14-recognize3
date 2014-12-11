@@ -47,21 +47,27 @@ function build_question(){
 
 
   //var_dump($gallery);
-  $ans = [];
+  $answer_1 = $gallery['questions'][$cq]['right_answer']['id'];
+  $answer_2 = $gallery['questions'][$cq]['other_answers'][0]['id'];
+  $answer_3 = $gallery['questions'][$cq]['other_answers'][1]['id'];
 
-  $ans[] = [$gallery['questions'][$cq]['right_answer']['id'], $gallery['questions'][$cq]['right_answer']['img_src']];
-  $ans[] = [$gallery['questions'][$cq]['other_answers'][0]['id'], $gallery['questions'][$cq]['other_answers'][0]['img_src']];
-  $ans[] = [$gallery['questions'][$cq]['other_answers'][1]['id'], $gallery['questions'][$cq]['other_answers'][1]['img_src']];
+  $answer_1_img = $gallery['questions'][$cq]['right_answer']['img_src'];
+  $answer_2_img = $gallery['questions'][$cq]['other_answers'][0]['img_src'];
+  $answer_3_img = $gallery['questions'][$cq]['other_answers'][1]['img_src'];
 
-  shuffle($ans);
-  $answer_1 = $ans[0][0];
-  $answer_2 = $ans[1][0];
-  $answer_3 = $ans[2][0];
+  $randomNumber = rand(0, 1);
+  while ($randomNumber > 0) {
+    $tmp = $answer_1;
+    $tmp_img = $answer_1_img;
 
-  $answer_1_img = $ans[0][1];
-  $answer_1_img = $ans[1][1];
-  $answer_1_img = $ans[2][1];
+    $answer_1 = $answer_2;
+    $answer_1_img = $answer_2_img;
 
+    $answer_2 = $tmp;
+    $answer_2 = $answer_2_img;
+
+    $randomNumber--;
+  }
 
 
   echo "<div class=\"panel panel-primary\">";
