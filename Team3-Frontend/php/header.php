@@ -10,6 +10,7 @@
 * @param active_title String of the active page title
 * @return String "active" if both parameters equal, "" otherwise
 */
+session_start();
 
 function getActivePage($title, $active_title){
   if($title === $active_title){

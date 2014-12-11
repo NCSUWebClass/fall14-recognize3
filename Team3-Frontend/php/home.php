@@ -3,6 +3,7 @@ $active_title = "Home";
 
 function get_galleries(){
   $galleries = json_decode(file_get_contents('http://localhost/Team3-Recognize/galleries'), true);
+  $_SESSION['current_q'] = 0;
 
   foreach($galleries['galleries'] as $gallery){
 

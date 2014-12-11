@@ -55,10 +55,11 @@ class Database {
     return $rows[0];
   }
 
-  public function getRandomAnswers($gallery_id) {
-    $stmt = $this->conn()->prepare("SELECT * from answers WHERE gallery_id=:gallery_id ORDER BY RAND() LIMIT 2");
+  public function getRandomAnswers($gallery_id, $except) {
+    $stmt = $this->conn()->prepare("SELECT * from answers WHERE gallery_id=:gallery_id AND id != :except_id ORDER BY RAND() LIMIT 2");
     $stmt->execute([
-      'gallery_id' => $gallery_id
+      'gallery_id' => $gallery_id,
+      'except_id' => $except
       ]);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if (count($rows) == 0) return false;

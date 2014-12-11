@@ -32,7 +32,7 @@ $app->get('/questions/gallery/:gallery', function($gallery) use ($app, $db) {
     $tmpq['id'] = $q['id'];
     $tmpq['img_src'] = $q['img_src'];
     $tmpq['right_answer'] = $db->getAnswer($q['answer_id']);
-    $tmpq['other_answers'] = $db->getRandomAnswers($q['gallery_id']);
+    $tmpq['other_answers'] = $db->getRandomAnswers($q['gallery_id'], $q['answer_id']);
 
     $ret[] = $tmpq;
   }

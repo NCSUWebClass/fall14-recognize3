@@ -31,16 +31,20 @@ if(!empty($_GET["answer"]) && !empty($_GET["question"])){
 
 function build_question(){
   $id = htmlspecialchars($_GET["id"]); // Gallery ID
+  $_SESSION['current_q'] = $_SESSION['current_q'] + 1;
+  $cq = $_SESSION['current_q'];
+
+  echo "<code>$cq</code>";
 
   $gallery = json_decode(file_get_contents('http://localhost/Team3-Recognize/questions/gallery/'.$id), true);
   //var_dump($gallery);
-  $answer_1 = $gallery['questions'][0]['right_answer']['id'];
-  $answer_2 = $gallery['questions'][0]['other_answers'][0]['id'];
-  $answer_3 = $gallery['questions'][0]['other_answers'][1]['id'];
+  $answer_1 = $gallery['questions'][$cq]['right_answer']['id'];
+  $answer_2 = $gallery['questions'][$cq]['other_answers'][0]['id'];
+  $answer_3 = $gallery['questions'][$cq]['other_answers'][1]['id'];
 
-  $answer_1_img = $gallery['questions'][0]['right_answer']['img_src'];
-  $answer_2_img = $gallery['questions'][0]['other_answers'][0]['img_src'];
-  $answer_3_img = $gallery['questions'][0]['other_answers'][1]['img_src'];
+  $answer_1_img = $gallery['questions'][$cq]['right_answer']['img_src'];
+  $answer_2_img = $gallery['questions'][$cq]['other_answers'][0]['img_src'];
+  $answer_3_img = $gallery['questions'][$cq]['other_answers'][1]['img_src'];
 
   //$questions = json_decode(file_get_contents('http://localhost/Team3-Recognize/gallery/'.$id), true);
   echo "<div class=\"panel panel-primary\">";
