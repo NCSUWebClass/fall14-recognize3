@@ -10,14 +10,13 @@ function get_galleries(){
     echo $gallery['id'];
     echo "\" class=\"list-group-item\">";
     echo "<span class=\"badge\">";
-    echo "10"; //$gallery['count'];
+    echo "10 Questions"; //$gallery['count'] . " Questions";
     echo "</span>";
-    echo $gallery['name']. ": " . $gallery['description'];
+    echo "<b>" . $gallery['name']. ":</b> " . $gallery['description'];
     echo "</a>";
     echo "\n";
   }
 }
-
 
 include './header.php';
 include '../content/header.html';
