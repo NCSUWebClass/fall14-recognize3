@@ -56,7 +56,7 @@ class Database {
   }
 
   public function getRandomAnswers($gallery_id, $except) {
-    $stmt = $this->conn()->prepare("SELECT * from answers WHERE gallery_id=:gallery_id AND id != :except_id ORDER BY RAND() LIMIT 2");
+    $stmt = $this->conn()->prepare("SELECT * from answers WHERE gallery_id=:gallery_id AND id <> :except_id ORDER BY RAND() LIMIT 2");
     $stmt->execute([
       'gallery_id' => $gallery_id,
       'except_id' => $except
