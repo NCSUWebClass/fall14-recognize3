@@ -1,6 +1,10 @@
 <?php
 $active_title = "Question";
-$id = htmlspecialchars($_GET["id"]);
+$id = htmlspecialchars($_GET["id"]); // Gallery ID
+
+function get_question(){
+
+}
 
 include './header.php';
 include '../content/header.html';
