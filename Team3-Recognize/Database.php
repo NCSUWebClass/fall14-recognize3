@@ -56,9 +56,9 @@ class Database {
 
   public function viewQuestion($question_id) {
     /// TODO Join with Answers table to get the right answer and other answers
-    $stmt = $this->conn()->prepare("SELECT * from questions WHERE id = :qid");
+    $stmt = $this->conn()->prepare("SELECT * from questions WHERE id = :id");
     $stmt->execute([
-      'qid' => $question_id
+      'id' => $question_id
       ]);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $rows;
