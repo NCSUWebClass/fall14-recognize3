@@ -10,7 +10,7 @@ function get_galleries(){
     echo $gallery['id'];
     echo "\" class=\"list-group-item\">";
     echo "<span class=\"badge\">";
-    echo "10 Questions"; //$gallery['count'] . " Questions";
+    echo "N Questions";
     echo "</span>";
     echo "<b>" . $gallery['name']. ":</b> " . $gallery['description'];
     echo "</a>";
