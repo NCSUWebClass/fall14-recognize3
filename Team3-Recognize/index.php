@@ -10,25 +10,16 @@ $db = new Database();
 //Pulls information about all galleries
 $app->get('/galleries', function() use ($app, $db) {
   $galleries = $db->viewGalleries();
-  $g = [];
+  $returnObj = [];
   foreach ($galleries as $gallery) {
-    $g[] = $gallery['name'];
+	$g = [];
+    $g['id'] = $gallery['id'];
+	$g['name'] = $gallery['name'];
+	$g['description'] = $gallery['description'];
+	$returnObj[] = $g;
   }
   $app->render(200, [
-    'galleries' => $g
-  ]);
-});
-
-//Pulls information about a particular gallery 
-$app->get('/gallery/:gallery', function($gallery) use ($app, $db) {
- $gallery = $db->viewGallery($gallery);
-  $g = [];
-  foreach ($gallery as $gy) {
-    $g["Name"] = $gy['name'];
-	$g["Description"] = $gy['description'];
-  }
-  $app->render(200, [
-    'gallery' => $g
+    'galleries' => $returnObj
   ]);
 });
 
@@ -44,7 +35,7 @@ $app->get('/questions', function() use ($app, $db) {
   ]);
 });
 
-//Pulls information about a particular gallery 
+//Pulls information for particular question 
 $app->get('/question/:id', function($id) use ($app, $db) {
  $gallery = $db->viewQuestion($id);
   $g = [];
