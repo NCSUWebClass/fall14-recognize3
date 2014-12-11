@@ -7,20 +7,18 @@ $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
 $db = new Database();
 
-$app->get('/galleries', function() use ($app) {
-
+$app->get('/galleries', function() use ($app, $db) {
+  $galleries = $db->viewGalleries();
+  $g = [];
+  foreach ($galleries as $gallery) {
+    $g[] = $gallery['name'];
+  }
   $app->render(200, [
-    'galleries' =>
-      [
-        'famous-mustaches',
-        'common-fruits',
-        'computer-programmers',
-        'soccer-players',
-      ]
+    'galleries' => $g
   ]);
 });
 
-$app->get('/gallery/:gallery', function($gallery) use ($app) {
+$app->get('/gallery/:gallery', function($gallery) use ($app, $db) {
   // TODO: fetch this from the DB
   $app->render(200, [
     'gallery' => [

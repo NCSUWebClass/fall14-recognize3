@@ -17,7 +17,7 @@ class Database {
     $this->connection = new PDO("mysql:host={$this->host};dbname={$this->dbname};charset=utf8", $this->username, $this->password);
   }
 
-  public function getConnection() {
+  public function conn() {
     return $this->connection;
   }
 
@@ -29,11 +29,11 @@ class Database {
   }
 
   public function viewGalleries() {
-    return selectStarTable("galleries");
+    return $this->selectStarTable("galleries");
   }
 
-  public function viewGalleries() {
-    return selectStarTable("questions");
+  public function viewQuestions() {
+    return $this->selectStarTable("questions");
   }
 
   public function viewGallery($id) {
