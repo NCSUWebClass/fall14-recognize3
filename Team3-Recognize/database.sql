@@ -1,0 +1,39 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+CREATE TABLE IF NOT EXISTS answers (
+id int(11) NOT NULL,
+  img_src varchar(200) NOT NULL,
+  gallery_id int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS galleries (
+id int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  description varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS questions (
+id int(11) NOT NULL,
+  img_src varchar(200) NOT NULL,
+  answer_id int(11) NOT NULL,
+  gallery_id int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+ALTER TABLE answers
+ ADD PRIMARY KEY (id);
+
+ALTER TABLE galleries
+ ADD PRIMARY KEY (id), ADD UNIQUE KEY `name` (`name`);
+
+ALTER TABLE questions
+ ADD PRIMARY KEY (id);
+
+
+ALTER TABLE answers
+MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE galleries
+MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE questions
+MODIFY id int(11) NOT NULL AUTO_INCREMENT;
