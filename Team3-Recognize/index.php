@@ -23,12 +23,12 @@ $app->get('/galleries', function() use ($app, $db) {
   ]);
 });
 
-//Pulls all questions
-$app->get('/questions', function() use ($app, $db) {
- $questions = $db->viewQuestions();
+//Pulls all questions from a particular gallery
+$app->get('/questions/:gallery', function($gallery) use ($app, $db) {
+ $questions = $db->viewQuestionsInGallery($gallery);
  $g = [];
-  foreach ($questions as $question) {
-    $g[] = $question['img_src'];
+  foreach ($questions as $gy) {
+    $g[] = $gy['img_src'];
   }
   $app->render(200, [
     'questions' => $g

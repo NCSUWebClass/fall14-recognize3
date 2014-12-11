@@ -46,7 +46,7 @@ class Database {
   }
 
   public function viewQuestionsInGallery($gallery_id) {
-    $stmt = $this->conn()->prepare("SELECT * from questions WHERE gallery_id = :galerry_id");
+    $stmt = $this->conn()->prepare("SELECT * from questions WHERE gallery_id = :gallery_id");
     $stmt->execute([
       'gallery_id' => $gallery_id
       ]);
