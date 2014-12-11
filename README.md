@@ -1,4 +1,2 @@
-better-recognize
-================
-
-Repo for recognize team-3
+fall14-recognize3
+=================
