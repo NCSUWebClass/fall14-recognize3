@@ -36,7 +36,16 @@ function build_question(){
 
   echo "<code>$cq</code>";
 
-  $gallery = json_decode(file_get_contents('http://localhost/Team3-Recognize/questions/gallery/'.$id), true);
+  if (!isset($_SESSION['cache'])) {
+    $gallery = json_decode(file_get_contents('http://localhost/Team3-Recognize/questions/gallery/'.$id), true);
+    $_SESSION['cache'] = $gallery;
+  }
+  else {
+    $gallery = $_SESSION['cache'];
+  }
+
+
+
   //var_dump($gallery);
   $answer_1 = $gallery['questions'][$cq]['right_answer']['id'];
   $answer_2 = $gallery['questions'][$cq]['other_answers'][0]['id'];
