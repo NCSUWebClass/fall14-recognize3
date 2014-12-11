@@ -69,7 +69,7 @@ function build_question(){
     echo "</div>";
       echo "<div class=\"panel-body\">";
       echo "<p class=\"text-center\">";
-      echo "<img  width=\"200px\" src=\"";
+      echo "<img  width=\"200px\" class='blurit' src=\"";
       echo $answer_1_img;
       echo "\">";
       echo "</p>";
