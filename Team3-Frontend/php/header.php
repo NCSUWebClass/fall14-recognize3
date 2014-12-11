@@ -10,6 +10,9 @@
 * @param active_title String of the active page title
 * @return String "active" if both parameters equal, "" otherwise
 */
+
+$galleries = json_decode(file_get_contents('http://localhost/Team3-Recognize/galleries'), true);
+
 function getActivePage($title, $active_title){
   if($title === $active_title){
     return "\"active\"";
