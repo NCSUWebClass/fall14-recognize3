@@ -47,15 +47,23 @@ function build_question(){
 
 
   //var_dump($gallery);
-  $answer_1 = $gallery['questions'][$cq]['right_answer']['id'];
-  $answer_2 = $gallery['questions'][$cq]['other_answers'][0]['id'];
-  $answer_3 = $gallery['questions'][$cq]['other_answers'][1]['id'];
+  $ans = [];
 
-  $answer_1_img = $gallery['questions'][$cq]['right_answer']['img_src'];
-  $answer_2_img = $gallery['questions'][$cq]['other_answers'][0]['img_src'];
-  $answer_3_img = $gallery['questions'][$cq]['other_answers'][1]['img_src'];
+  $ans[] = [$gallery['questions'][$cq]['right_answer']['id'], $gallery['questions'][$cq]['right_answer']['img_src']];
+  $ans[] = [$gallery['questions'][$cq]['other_answers'][0]['id'], $gallery['questions'][$cq]['other_answers'][0]['img_src']];
+  $ans[] = [$gallery['questions'][$cq]['other_answers'][1]['id'], $gallery['questions'][$cq]['other_answers'][1]['img_src']];
 
-  //$questions = json_decode(file_get_contents('http://localhost/Team3-Recognize/gallery/'.$id), true);
+  shuffle($ans);
+  $answer_1 = $ans[0][0];
+  $answer_2 = $ans[1][0];
+  $answer_3 = $ans[2][0];
+
+  $answer_1_img = $ans[0][1];
+  $answer_1_img = $ans[1][1];
+  $answer_1_img = $ans[2][1];
+
+
+
   echo "<div class=\"panel panel-primary\">";
     echo "<div class=\"panel-heading\">";
       echo "<h3 class=\"panel-title\">Here's a picture</h3>";
@@ -76,11 +84,13 @@ function build_question(){
   echo $answer_1_img;
   echo "\">";
   echo "</a>";
+
   echo "<a href=\"./question.php?id=".$id."&answer=".$answer_2."&question=".$answer_1."\" class=\"thumbnail\">";
   echo "<img width=\"200px\" src=\"";
   echo $answer_2_img;
   echo "\">";
   echo "</a>";
+
   echo "<a href=\"./question.php?id=".$id."&answer=".$answer_3."&question=".$answer_1."\" class=\"thumbnail\">";
   echo "<img  width=\"200px\" src=\"";
   echo $answer_3_img;
